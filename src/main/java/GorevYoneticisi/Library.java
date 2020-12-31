@@ -13,7 +13,7 @@ public class Library {
 	public static void main (String [] args ) throws ClassNotFoundException, SQLException{
 		
 		System.out.println("calistim");
-        String connectionUrl = "jdbc:mysql://localhost:3306/gorevler?useUnicode=true&characterEncoding=UTF-8&user=sulefdnl&password=sF23.07.2000";
+        String connectionUrl = "jdbc:mysql://localhost:3306/gorevler?useUnicode=true&characterEncoding=UTF-8&user=sulefdnl&password=password";
         Connection conn = DriverManager.getConnection(connectionUrl);
         ResultSet rs = conn.prepareStatement("show tables").executeQuery();
  
