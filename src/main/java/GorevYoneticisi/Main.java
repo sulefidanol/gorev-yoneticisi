@@ -7,29 +7,28 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 import controller.GorevController;
+import controller.KisiController;
 
 public class Main {
 	
 	public static void main (String [] args ) throws ClassNotFoundException, SQLException{
-		GorevController gorevController = new GorevController();
-		gorevController.gorev();
 		
-		System.out.println("calistim");
-        String connectionUrl = "jdbc:mysql://localhost:3306/gorevler?useUnicode=true&characterEncoding=UTF-8&user=sulefdnl&password=sF23.07.2000";
-        Connection conn = DriverManager.getConnection(connectionUrl);
-        ResultSet rs = conn.prepareStatement("select * from gorev").executeQuery();
- 
-        while(rs.next()){
-            String s = rs.getString(1);
-            System.out.println(s);
-            String s2 = rs.getString(2);
-            System.out.println(s2);
-            String s3 = rs.getString(3);
-            System.out.println(s3);
-            String s4 = rs.getString(4);
-            System.out.println(s4);
-        }
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("görevler için 1 kiþiler için 2 ye basýnýz.");
+		int secim = scanner.nextInt();
+		if(secim==1){
+			GorevController gorevController = new GorevController();
+			gorevController.gorev();
+			}
+		if(secim==2) {
+			KisiController kisiController = new KisiController();
+			kisiController.Kisi();
+		}
     }
+	
+	
+	
 }

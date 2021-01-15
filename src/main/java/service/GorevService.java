@@ -3,35 +3,43 @@ package service;
 import java.util.ArrayList;
 
 import model.Gorev;
+import repository.GorevRepository;
 
 public class GorevService {
-	private ArrayList<Gorev> gorevler = new ArrayList<Gorev>();
+	
+	private GorevRepository gorevRepository = new GorevRepository();
+	
 	public Gorev yeniGorevOlustur(String gorevAdi,String gorevAciklamasi) {
-		
 		Gorev yeniGorev = new Gorev(gorevAdi, gorevAciklamasi, false);
-		gorevler.add(yeniGorev);
+		gorevRepository.create(yeniGorev);
 		return yeniGorev;
 	}
+	
 	public void gorevSil(int index) {
-		gorevler.remove(index);
+		gorevRepository.delete(index);
 	}
+	
 	public Gorev gorevGetir(int index) {
-		return gorevler.get(index);
+		return gorevRepository.getGorev(index);
 		
 	}
+	
 	public ArrayList<Gorev> hepsiniGetir(){
-		return gorevler;
+		return gorevRepository.getGorevler();
 	}
 
 	public Gorev gorevGüncelle(int index,String gorevAdi,String gorevAciklamasi) {
-		Gorev gorev = gorevGetir(index);
+		Gorev gorev = gorevRepository.getGorev(index);
 		gorev.setGorevAciklamasi(gorevAciklamasi);
 		gorev.setGorevAdý(gorevAdi);
+		gorevRepository.update(gorev);
 		return gorev;
 	}
+	
 	public Gorev gorevTamamla(int index) {
-		Gorev gorev = gorevGetir(index);
-		gorev.setYapýlmýsGorev(true);
+		Gorev gorev = gorevRepository.getGorev(index);
+		gorev.setYapýlmýsGorev(!gorev.isYapýlmýsGorev());
+		gorevRepository.update(gorev);
 		return gorev;
 	}
 	
